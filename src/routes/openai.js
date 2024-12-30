@@ -1,8 +1,8 @@
 import express from 'express';
 import {
-  generateTitle,
+  // generateTitle,
   generateTags,
-  generateSummary,
+  // generateSummary,
 } from '../services/openai.js';
 import { catchAsync } from '../utils/errors.js';
 import { validateContent, validateMessages } from '../middleware/validate.js';
