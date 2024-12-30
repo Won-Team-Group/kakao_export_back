@@ -7,32 +7,32 @@ const openai = new OpenAI({
   apiKey: config.openaiApiKey,
 });
 
-export const generateTitle = async (content) => {
-  console.log(openai.apiKey);
-  try {
-    const response = await openai.chat.completions.create({
-      model: OPENAI_CONSTANTS.MODEL,
-      messages: [
-        {
-          role: 'system',
-          content:
-            'You are a helpful assistant that generates concise titles for text content. Keep titles under 50 characters.',
-        },
-        {
-          role: 'user',
-          content: `Generate a title for this content: ${content}`,
-        },
-      ],
-      temperature: OPENAI_CONSTANTS.TEMPERATURE,
-      max_tokens: OPENAI_CONSTANTS.MAX_TOKENS.TITLE,
-    });
-    // console.log('제목', response);
+// export const generateTitle = async (content) => {
+//   console.log(openai.apiKey);
+//   try {
+//     const response = await openai.chat.completions.create({
+//       model: OPENAI_CONSTANTS.MODEL,
+//       messages: [
+//         {
+//           role: 'system',
+//           content:
+//             'You are a helpful assistant that generates concise titles for text content. Keep titles under 50 characters.',
+//         },
+//         {
+//           role: 'user',
+//           content: `Generate a title for this content: ${content}`,
+//         },
+//       ],
+//       temperature: OPENAI_CONSTANTS.TEMPERATURE,
+//       max_tokens: OPENAI_CONSTANTS.MAX_TOKENS.TITLE,
+//     });
+//     // console.log('제목', response);
 
-    return response.choices[0].message.content?.trim() || '제목 없음';
-  } catch (error) {
-    throw new AppError('Failed to generate title from OpenAI', 500);
-  }
-};
+//     return response.choices[0].message.content?.trim() || '제목 없음';
+//   } catch (error) {
+//     throw new AppError('Failed to generate title from OpenAI', 500);
+//   }
+// };
 
 export const generateTags = async (content) => {
   try {
@@ -64,27 +64,27 @@ export const generateTags = async (content) => {
   }
 };
 
-export const generateSummary = async (messages) => {
-  try {
-    const response = await openai.chat.completions.create({
-      model: OPENAI_CONSTANTS.MODEL,
-      messages: [
-        {
-          role: 'system',
-          content:
-            'Summarize the common themes and insights from the given messages in 2-3 sentences in Korean.',
-        },
-        {
-          role: 'user',
-          content: `Summarize these related messages: ${messages.join('\n\n')}`,
-        },
-      ],
-      temperature: OPENAI_CONSTANTS.TEMPERATURE,
-      max_tokens: OPENAI_CONSTANTS.MAX_TOKENS.SUMMARY,
-    });
+// export const generateSummary = async (messages) => {
+//   try {
+//     const response = await openai.chat.completions.create({
+//       model: OPENAI_CONSTANTS.MODEL,
+//       messages: [
+//         {
+//           role: 'system',
+//           content:
+//             'Summarize the common themes and insights from the given messages in 2-3 sentences in Korean.',
+//         },
+//         {
+//           role: 'user',
+//           content: `Summarize these related messages: ${messages.join('\n\n')}`,
+//         },
+//       ],
+//       temperature: OPENAI_CONSTANTS.TEMPERATURE,
+//       max_tokens: OPENAI_CONSTANTS.MAX_TOKENS.SUMMARY,
+//     });
 
-    return response.choices[0].message.content?.trim() || '';
-  } catch (error) {
-    throw new AppError('Failed to generate summary from OpenAI', 500);
-  }
-};
+//     return response.choices[0].message.content?.trim() || '';
+//   } catch (error) {
+//     throw new AppError('Failed to generate summary from OpenAI', 500);
+//   }
+// };
